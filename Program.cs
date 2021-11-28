@@ -13,7 +13,7 @@ app.MapGet("/api/v1/users", () => {
                 Id = i,
                 First_Name = "First_Name" + i,
                 Last_Name = "Last_Name" + i,
-                Framework = "dotnet6"
+                Framework = "dotnet6 minimal"
             }
         );
     }

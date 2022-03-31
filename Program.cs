@@ -7,19 +7,22 @@ var app = builder.Build();
 
 // Route
 app.MapGet("/api/v1/users", () => {
-    var list = new List<User>(1000);
-    for (int index = 1; index < 1001; index++) {
-        list.Add(new User {
-                Id = index,
-                Age = 25,
-                First_Name = "First_Name" + index,
-                Last_Name = "Last_Name" + index,
-                Framework = "dotnet6 minimala"
-            }
-        );
+    async IAsyncEnumerable<User> StreamUserAsync()
+    {
+        for (var index = 1; index < 1001; index++)
+        {
+            yield return new User {
+                    Id = index,
+                    Age = 25,
+                    First_Name = "First_Name" + index,
+                    Last_Name = "Last_Name" + index,
+                    Framework = "dotnet6 minimal"
+                 }
+            ;
+        }
     }
 
-    return list;
+    return StreamUserAsync();
 });
 
 // Run
